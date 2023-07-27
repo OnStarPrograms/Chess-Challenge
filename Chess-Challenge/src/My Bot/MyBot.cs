@@ -7,7 +7,7 @@ public class MyBot : IChessBot
     {
         Move[] moves = board.GetLegalMoves();
         for (int i=0; i<moves.Length;i++){
-            Console.WriteLine(moves);
+            Console.WriteLine(moves[i]);
         }
         return moves[0];
     }
