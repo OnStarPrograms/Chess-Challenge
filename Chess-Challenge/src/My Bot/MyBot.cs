@@ -26,12 +26,13 @@ public class MyBot : IChessBot
                     break;
                 }
                 else
-                {
+                {   
+
                     Console.WriteLine(Depth);
-                    return Recurse(Depth - 1, Points+1);
+                    return Recurse(Depth - 1, Points*-1);
                 }
             }
-            return Points;
+            return Math.Abs(Points);
         }
 
         int Rec = Recurse(3, 3);
