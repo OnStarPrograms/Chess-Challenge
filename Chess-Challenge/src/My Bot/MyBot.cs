@@ -1,6 +1,16 @@
 ﻿using ChessChallenge.API;
 using System;
 
+/*
+ * Time Tracker that will stop the recursion if run out of time
+ * 
+ * implement points
+ * 
+ * after poit implementation, add tree prunning
+ * 
+ * 
+ * 
+ */
 public class MyBot : IChessBot
 {
     public Move Think(Board board, Timer timer)
@@ -8,35 +18,44 @@ public class MyBot : IChessBot
         int[] Points = [1, 3, 3, 4, 8 ];
         String[] Peices = ["Pawn", "Knight", "Bishop", "Rook", "Queen"];
         Move[] moves = board.GetLegalMoves();
-        Console.WriteLine(timer.MillisecondsRemaining);
+        int[] depth =  new int[moves.Length];
+        //////////////////////////////////////////////////////////
+
         for (int i = 0; i < moves.Length; i++)
         {
-            Console.WriteLine(moves[i]);
-            Console.WriteLine(moves[i].MovePieceType);
+            //Deptch
+            depth[i] = 3;
+            //
         }
-
+        /////////////////////////////////////////////////////
 
         int Recurse(int Depth, int Points)
         {
-            Move[] moves = board.GetLegalMoves();
-            for (int j = 0 ; j < moves.Length; j++)
+            Move[] moves2 = board.GetLegalMoves();
+            int RecursionDepth = Depth;
+            for (int j = 0 ; j < moves2.Length; j++)
             {
                 if (Depth <= 0)
                 {
                     break;
                 }
                 else
-                {   
-
+                {
                     Console.WriteLine(Depth);
-                    return Recurse(Depth - 1, Points*-1);
+                    Console.WriteLine("move choice" + j.ToString());
+                    
+                    Points += Recurse(RecursionDepth - 1, Points*-1);
                 }
             }
-            return Math.Abs(Points);
+            return Points;
         }
-
-        int Rec = Recurse(3, 3);
-        Console.WriteLine(Rec);
-        return moves[Rec];
+        /////////////////////////////////////////////////////////
+        
+        for (int i = 0; i < moves.Length; i++)
+        {
+            int Rec = Recurse(depth[i], 3);
+            Console.WriteLine(Math.Abs(Rec));
+        }
+        return moves[0];
     }
 }
