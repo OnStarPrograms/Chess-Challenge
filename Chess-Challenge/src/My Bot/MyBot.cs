@@ -3,13 +3,10 @@ using System;
 using System.Drawing;
 
 /*
- * Time Tracker that will stop the recursion if run out of time
  * 
- * implement points
+ * Add Point Weighing
  * 
  * after poit implementation, add tree prunning
- * 
- * 
  * 
  */
 class Alloc
