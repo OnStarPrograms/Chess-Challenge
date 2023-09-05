@@ -73,8 +73,8 @@ public class MyBot : IChessBot
         for (int i = 0; i < moves.Length; i++)
         {
             Recurse(depth[i], 1, i);
-            Console.WriteLine(MyPoints.returnPoint(i));
             Console.Write(moves[i].MovePieceType);
+            Console.WriteLine(MyPoints.returnPoint(i));
         }
         return moves[0];
     }
