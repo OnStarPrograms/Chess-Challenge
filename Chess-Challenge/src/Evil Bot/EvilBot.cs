@@ -37,6 +37,9 @@ namespace ChessChallenge.Example
                     moveToPlay = move;
                     highestValueCapture = capturedPieceValue;
                 }
+                board.MakeMove(move);
+
+                board.UndoMove(move);
             }
 
             return moveToPlay;
